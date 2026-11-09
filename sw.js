@@ -1,4 +1,4 @@
-const CACHE_NAME = 'billetera-v1';
+const CACHE_NAME = 'billetera-v2';
 
 // App Shell: todo lo necesario para renderizar la interfaz sin red
 const APP_SHELL = [
