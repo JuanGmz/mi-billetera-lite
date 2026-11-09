@@ -1,4 +1,4 @@
-const CACHE_NAME = 'billetera-v2';
+const CACHE_NAME = 'billetera-v3';
 
 // App Shell: todo lo necesario para renderizar la interfaz sin red
 const APP_SHELL = [
@@ -16,7 +16,8 @@ const APP_SHELL = [
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(APP_SHELL))
+      // cache: 'reload' evita que la caché HTTP (max-age de GitHub Pages) guarde archivos viejos
+      .then((cache) => cache.addAll(APP_SHELL.map((url) => new Request(url, { cache: 'reload' }))))
       .then(() => self.skipWaiting())
   );
 });

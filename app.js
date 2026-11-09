@@ -55,6 +55,15 @@ form.addEventListener('submit', async (e) => {
 render();
 
 if ('serviceWorker' in navigator) {
+  // Si ya había un SW y toma el control uno nuevo, recargar para mostrar la versión nueva
+  if (navigator.serviceWorker.controller) {
+    let recargado = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (recargado) return;
+      recargado = true;
+      location.reload();
+    });
+  }
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').catch((err) =>
       console.error('Fallo el registro del Service Worker:', err)
