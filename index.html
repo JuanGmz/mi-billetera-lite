@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mi Billetera Lite</title>
+  <meta name="description" content="Registro de gastos diarios que funciona sin conexión.">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="total-bar">
+    <span class="total-label">Total gastado</span>
+    <strong id="total" aria-live="polite">$0.00</strong>
+  </header>
+
+  <main>
+    <form id="gasto-form" class="card" autocomplete="off">
+      <h2>Nuevo gasto</h2>
+
+      <label for="concepto">Concepto</label>
+      <input id="concepto" name="concepto" type="text" placeholder="Ej: Café" maxlength="80" required>
+
+      <label for="monto">Monto</label>
+      <input id="monto" name="monto" type="number" inputmode="decimal" step="0.01" min="0.01" placeholder="45.50" required>
+
+      <label for="categoria">Categoría</label>
+      <select id="categoria" name="categoria" required>
+        <option>Comida</option>
+        <option>Transporte</option>
+        <option>Servicios</option>
+        <option>Ocio</option>
+        <option>Otros</option>
+      </select>
+
+      <button type="submit">Guardar gasto</button>
+    </form>
+
+    <section class="card">
+      <h2>Historial</h2>
+      <p id="vacio" class="vacio">Aún no hay gastos registrados.</p>
+      <ul id="historial" class="historial"></ul>
+    </section>
+  </main>
+
+  <script src="./db.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
